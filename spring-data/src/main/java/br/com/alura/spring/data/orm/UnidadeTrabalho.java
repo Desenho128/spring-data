@@ -7,13 +7,14 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="cargos")
-public class Cargo {
-	
+@Table(name = "unidade_trabalho")
+public class UnidadeTrabalho {
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	private String descricao;
+	private String endereco;
 	
 	public Integer getId() {
 		return id;
@@ -27,11 +28,14 @@ public class Cargo {
 	public void setDescricao(String descricao) {
 		this.descricao = descricao;
 	}
-	
-	@Override
-	public String toString() {
-		return "Cargo [id=" + id + ", descricao=" + descricao + "]";
+	public String getEndereco() {
+		return endereco;
 	}
+	public void setEndereco(String endereco) {
+		this.endereco = endereco;
+	}
+	
+	
 	
 	
 }
