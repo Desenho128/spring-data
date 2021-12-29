@@ -24,7 +24,7 @@ public class CrudCargoService {
 			System.out.println("0 - Sair");
 			System.out.println("1 - Salvar");
 			System.out.println("2 - Atualizar");
-1			System.out.println("3 - Listar");
+			System.out.println("3 - Listar");
 			System.out.println("4 - Apagar");
 			
 			int action = scanner.nextInt();
