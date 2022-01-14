@@ -1,6 +1,5 @@
 package br.com.alura.spring.data.orm;
 
-import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.List;
 
@@ -27,7 +26,7 @@ public class Funcionario {
 	private Integer id;
 	private String nome;
 	private String cpf;
-	private BigDecimal salario;
+	private Double salario;
 	private LocalDate contratacao;
 	@ManyToOne
 	@JoinColumn(name = "cargo_id" , nullable = false)
@@ -37,9 +36,7 @@ public class Funcionario {
 	@JoinTable(name = "funcionario_unidades",joinColumns = {
 			@JoinColumn(name = "fk_funcionario")} ,
 		inverseJoinColumns = {@JoinColumn(name="fk_unidade")})
-	private List<UnidadeTrabalho> unidadeTrabalhos
-	; 
-	
+	private List<UnidadeTrabalho> unidadeTrabalhos; 
 	
 	public Integer getId() {
 		return id;
@@ -59,10 +56,10 @@ public class Funcionario {
 	public void setCpf(String cpf) {
 		this.cpf = cpf;
 	}
-	public BigDecimal getSalario() {
+	public Double getSalario() {
 		return salario;
 	}
-	public void setSalario(BigDecimal salario) {
+	public void setSalario(Double salario) {
 		this.salario = salario;
 	}
 	public LocalDate getContratacao() {
@@ -71,5 +68,23 @@ public class Funcionario {
 	public void setContratacao(LocalDate contratacao) {
 		this.contratacao = contratacao;
 	}
-		
+	public Cargo getCargo() {
+		return cargo;
+	}
+	public void setCargo(Cargo cargo) {
+		this.cargo = cargo;
+	}
+	public List<UnidadeTrabalho> getUnidadeTrabalhos() {
+		return unidadeTrabalhos;
+	}
+	public void setUnidadeTrabalhos(List<UnidadeTrabalho> unidadeTrabalhos) {
+		this.unidadeTrabalhos = unidadeTrabalhos;
+	}
+	@Override
+	public String toString() {
+		return "Funcionario [id=" + id + ", nome=" + nome + ", cpf=" + cpf + ", salario=" + salario + ", contratacao="
+				+ contratacao + ", cargo=" + cargo + "]";
+	}
+	
+	
 }

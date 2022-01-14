@@ -1,5 +1,9 @@
 package br.com.alura.spring.data.repository;
 
+import java.time.LocalDate;
+import java.util.List;
+
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
@@ -7,5 +11,15 @@ import br.com.alura.spring.data.orm.Funcionario;
 
 @Repository
 public interface FuncionarioRepository extends CrudRepository<Funcionario , Integer> {
-
+	
+	List<Funcionario> findByNome(String nome);
+	
+	List<Funcionario> findByNomeAndSalarioGreaterThanAndContratacao(String nome,Double salario,LocalDate data);
+	
+	@Query("SELECT f FROM Funcionario f "
+			+ "Where f.nome = :nome and f.salario >= :salario and f.contratacao = :data")
+	List<Funcionario> findNomeSalarioMaiorDataContratacao(String nome,Double salario, LocalDate data);
+	
+	@Query(value = "select f from funcionarios f where f.contratacao >=:data",nativeQuery = true)
+	List<Funcionario> findDataContratacaoMaior(LocalDate data);
 }
