@@ -9,6 +9,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Service;
 
 import br.com.alura.spring.data.orm.Funcionario;
+import br.com.alura.spring.data.orm.FuncionarioProjecao;
 import br.com.alura.spring.data.repository.FuncionarioRepository;
 
 @Service
@@ -30,6 +31,7 @@ public class RelatoriosService {
 			System.out.println("1 - Busca Funcionario nome");
 			System.out.println("2 - Busca Funcionario nome salario e data de Contratação");
 			System.out.println("3 - Busca Funcionario data de Contratação");
+			System.out.println("4 - Pesquisa Funcionario Salario");
 			
 			int action = scanner.nextInt();
 			switch (action) {
@@ -41,6 +43,9 @@ public class RelatoriosService {
 				break;
 			case 3:
 				buscaFuncionarioDataContratacao(scanner);
+				break;
+			case 4:
+				pesquisaFuncionarioSalario();
 				break;
 			default:
 				system = false;
@@ -85,5 +90,11 @@ public class RelatoriosService {
 	}
 	
 	
+	private void pesquisaFuncionarioSalario() {
+		
+		List<FuncionarioProjecao> list = funcionarioRepository.findFuncionarioSalario();
+		list.forEach(f-> System.out.println("Funcionario: id"+f.getId()+"| nome :"+f.getNome()+" | Salario: "+f.getSalario()));
+		
+	}
 	
 }
